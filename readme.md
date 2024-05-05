@@ -1,5 +1,7 @@
 # GL.iNet Remove China Lock
 
+<img src="images/screen.jpg" width="400" align="right" alt="Profile Picture" style="border-radius: 10%;">
+
 This script is designed to unlock a GL.iNet router that has been locked due to laws in China.
 
 By running this script, the VPN features and AdGuard Home will be available in the GL GUI.
