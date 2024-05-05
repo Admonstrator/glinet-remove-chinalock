@@ -2,7 +2,7 @@
 
 This script is designed to unlock a GL.iNet router that has been locked due to laws in China.
 
-By running this script, the VPN features will be available in the GL GUI.
+By running this script, the VPN features and AdGuard Home will be available in the GL GUI.
 
 ## Warnings & Disclaimers
 
