@@ -10,8 +10,10 @@
 # Author: Admon
 # Updated: 2024-05-05
 # Date: 2024-05-05
-SCRIPT_VERSION="2024.05.19.01"
-# ^ Update this version number when you make changes to the script
+SCRIPT_VERSION="2024.05.19.02"
+SCRIPT_NAME="glinet-remove-chinalock.sh"
+UPDATE_URL="https://raw.githubusercontent.com/Admonstrator/glinet-remove-chinalock/main/glinet-remove-chinalock.sh"
+# ^ Update this block with the latest version and update URL
 #
 # Usage: ./glinet-remove-chinalock.sh [--help] [--new-country-code=<COUNTRY_CODE>] [--country-code=<COUNTRY_CODE>]
 # Warning: This script might potentially harm your router. Use it at your own risk!
@@ -159,23 +161,23 @@ invoke_done() {
 }
 
 invoke_update() {
-    log "INFO" "Checking for script updates ..."
-    SCRIPT_VERSION_NEW=$(curl -s "https://raw.githubusercontent.com/Admonstrator/glinet-remove-chinalock/main/glinet-remove-chinalocksh" | grep -o 'SCRIPT_VERSION="[0-9]\{4\}\.[0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{2\}"' | cut -d '"' -f 2 || echo "Failed to retrieve scriptversion")
+    log "INFO" "Checking for script updates"
+    SCRIPT_VERSION_NEW=$(curl -s "$UPDATE_URL" | grep -o 'SCRIPT_VERSION="[0-9]\{4\}\.[0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{2\}"' | cut -d '"' -f 2 || echo "Failed to retrieve scriptversion")
     if [ -n "$SCRIPT_VERSION_NEW" ] && [ "$SCRIPT_VERSION_NEW" != "$SCRIPT_VERSION" ]; then
-       log "INFO" "A new version of the script is available: $SCRIPT_VERSION_NEW"
+       log "WARNING" "A new version of the script is available: $SCRIPT_VERSION_NEW"
        log "INFO" "Updating the script ..."
-       wget -qO /tmp/glinet-remove-chinalock.sh "https://raw.githubusercontent.com/Admonstrator/glinet-remove-chinalock/main/glinet-remove-chinalock.sh"
+       wget -qO /tmp/$SCRIPT_NAME "$UPDATE_URL"
        # Get current script path
        SCRIPT_PATH=$(readlink -f "$0")
        # Replace current script with updated script
        rm "$SCRIPT_PATH"
-       mv /tmp/glinet-remove-chinalock.sh "$SCRIPT_PATH"
+       mv /tmp/$SCRIPT_NAME "$SCRIPT_PATH"
        chmod +x "$SCRIPT_PATH"
        log "INFO" "The script has been updated. It will now restart ..."
        sleep 3
        exec "$SCRIPT_PATH" "$@"
     else
-        log "INFO" "The script is up to date"
+        log "SUCCESS" "The script is up to date"
     fi
 }
 
