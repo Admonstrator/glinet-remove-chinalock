@@ -48,6 +48,14 @@ This will remove the China lock and set the country code to DE (Germany).
 2. Run the command: `reboot`
 3. Set up the device again, all settings will be lost
 
+## Tested Devices
+
+| Device                        | Tested             |
+| ----------------------------- | ------------------ |
+| GL-MT3000 / AX3000 (Beryl AX) | :white_check_mark: |
+| GL-MT6000 (Flint 2)           | :white_check_mark: |
+| GL-XE3000 (Puli AX)           | :white_check_mark: |
+
 ## Issues
 
 Please report issues to this repository, make sure to include your router model and firmware version.
